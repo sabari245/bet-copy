@@ -36,7 +36,7 @@
     }
 
     main {
-      width: min(92vw, 520px);
+      width: min(92vw, 680px);
       padding: 32px 20px;
     }
 
@@ -59,7 +59,14 @@
 
     .grid {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
+    }
+
+    @media (max-width: 420px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .copy-card {
@@ -73,6 +80,17 @@
       background: rgba(24, 24, 27, 0.82);
       backdrop-filter: blur(12px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease;
+    }
+
+    .copy-card:hover {
+      border-color: rgba(250, 250, 250, .18);
+      background: rgba(30, 30, 33, 0.92);
+    }
+
+    .copy-card:active {
+      background: rgba(40, 40, 43, 0.95);
     }
 
     code {
@@ -148,12 +166,19 @@
     </section>
 
     <section class="grid" aria-label="Bet copy buttons">
-      <div class="copy-card"><code>$bet 1</code><button data-copy="$bet 1">Copy</button></div>
-      <div class="copy-card"><code>$bet 2</code><button data-copy="$bet 2">Copy</button></div>
-      <div class="copy-card"><code>$bet 4</code><button data-copy="$bet 4">Copy</button></div>
-      <div class="copy-card"><code>$bet 8</code><button data-copy="$bet 8">Copy</button></div>
-      <div class="copy-card"><code>$bet 16</code><button data-copy="$bet 16">Copy</button></div>
-      <div class="copy-card"><code>$bet 32</code><button data-copy="$bet 32">Copy</button></div>
+      <div class="copy-card" data-copy="$bet 1"><code>$bet 1</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 2"><code>$bet 2</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 4"><code>$bet 4</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 8"><code>$bet 8</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 16"><code>$bet 16</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 32"><code>$bet 32</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 64"><code>$bet 64</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 128"><code>$bet 128</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 256"><code>$bet 256</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 512"><code>$bet 512</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 1024"><code>$bet 1024</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 2048"><code>$bet 2048</code><button>Copy</button></div>
+      <div class="copy-card" data-copy="$bet 4096"><code>$bet 4096</code><button>Copy</button></div>
     </section>
 
     <footer>Minimal dark UI · Copy-ready</footer>
@@ -197,8 +222,8 @@
       }
     }
 
-    document.querySelectorAll("[data-copy]").forEach((button) => {
-      button.addEventListener("click", () => copyText(button.dataset.copy));
+    document.querySelectorAll(".copy-card").forEach((card) => {
+      card.addEventListener("click", () => copyText(card.dataset.copy));
     });
   </script>
 </body>
